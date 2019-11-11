@@ -45,3 +45,20 @@ hideBox.addEventListener('change', function(e) {
 		list.style.display = 'block';
 	}
 });
+
+// filter books
+const searchBar = document.forms['search-books'].querySelector('input');
+searchBar.addEventListener('keyup', function(e) {
+	const term = e.target.value.toLowerCase();
+	const books = list.getElementsByTagName('li');
+	Array.from(books).map((book) => {
+		const title = book.firstElementChild.textContent;
+		// if statement checks the position of term inside the title
+		// -1 means term is not in title
+		if (title.toLowerCase().indexOf(term) !== -1) {
+			book.style.display = 'block';
+		} else {
+			book.style.display = 'none';
+		}
+	});
+});
